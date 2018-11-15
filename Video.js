@@ -26,17 +26,17 @@ export default class Video extends Component {
   setNativeProps(nativeProps) {
     this._root.setNativeProps(nativeProps);
   }
-  
+
   toTypeString(x) {
     switch (typeof x) {
       case "object":
-        return x instanceof Date 
-          ? x.toISOString() 
+        return x instanceof Date
+          ? x.toISOString()
           : JSON.stringify(x); // object, null
       case "undefined":
         return "";
       default: // boolean, number, string
-        return x.toString();      
+        return x.toString();
     }
   }
 
@@ -52,7 +52,7 @@ export default class Video extends Component {
 
   seek = (time, tolerance = 100) => {
     if (isNaN(time)) throw new Error('Specified time is not a number');
-    
+
     if (Platform.OS === 'ios') {
       this.setNativeProps({
         seek: {
@@ -174,7 +174,7 @@ export default class Video extends Component {
       this.props.onPlaybackRateChange(event.nativeEvent);
     }
   };
-  
+
   _onExternalPlaybackChange = (event) => {
     if (this.props.onExternalPlaybackChange) {
       this.props.onExternalPlaybackChange(event.nativeEvent);
@@ -393,5 +393,13 @@ const RCTVideo = requireNativeComponent('RCTVideo', Video, {
     src: true,
     seek: true,
     fullscreen: true,
+    testID: true,
+    accessibilityComponentType: true,
+    renderToHardwareTextureAndroid: true,
+    accessibilityLabel: true,
+    accessibilityLiveRegion: true,
+    importantForAccessibility: true,
+    onLayout: true,
+    nativeID: true
   },
 });
