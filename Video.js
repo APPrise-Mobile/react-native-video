@@ -26,17 +26,17 @@ export default class Video extends Component {
   setNativeProps(nativeProps) {
     this._root.setNativeProps(nativeProps);
   }
-  
+
   toTypeString(x) {
     switch (typeof x) {
       case "object":
-        return x instanceof Date 
-          ? x.toISOString() 
+        return x instanceof Date
+          ? x.toISOString()
           : JSON.stringify(x); // object, null
       case "undefined":
         return "";
       default: // boolean, number, string
-        return x.toString();      
+        return x.toString();
     }
   }
 
@@ -394,5 +394,13 @@ const RCTVideo = requireNativeComponent('RCTVideo', Video, {
     src: true,
     seek: true,
     fullscreen: true,
+    testID: true,
+    accessibilityComponentType: true,
+    renderToHardwareTextureAndroid: true,
+    accessibilityLabel: true,
+    accessibilityLiveRegion: true,
+    importantForAccessibility: true,
+    onLayout: true,
+    nativeID: true
   },
 });
